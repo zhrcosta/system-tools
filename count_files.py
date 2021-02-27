@@ -5,9 +5,7 @@ def countFiles(path):
     import os
     import glob
 
-    if os.uname()[0] == "Linux":
-        os.system("clear")
-
+    
     type_count = []
 
     folder = glob.glob(path + "/*")
@@ -36,7 +34,8 @@ def countFiles(path):
     for type in type_count:
         extension = type[1]
         amount = type[0]
-        print(f'{extension} ........... {amount}')
+        space = 30 - (len(extension) + len(str(amount)))
+        print(f'{extension} {space * "."} {amount}')
 
 
-countFiles("/home/zhrcosta/Downloads")
+countFiles("test")
