@@ -25,4 +25,5 @@ def sizeReadable(sizeInBytes):
             break
 
 
-print(sizeReadable(19992089206171))
+if __name__ == '__main__':
+    print(sizeReadable(127923282))

@@ -1,3 +1,4 @@
+from size_readable_m2 import sizeReadable
 
 
 def sizeByFileType(path):
@@ -31,7 +32,6 @@ def sizeByFileType(path):
                 amount += 1
                 size += os.path.getsize(file_path)
 
-        
         type_count.append((size, amount, exttype))
 
     type_count = sorted(type_count)[::-1]
@@ -39,10 +39,11 @@ def sizeByFileType(path):
     for typef in type_count:
 
         space_1 = 15 - (len(typef[2]) + len(str(typef[1])))
-        space_2 = 15 - len(str(typef[0]))
-        
+        size_readable = sizeReadable(typef[0])
+        space_2 = 15 - len(size_readable)
+
         print(
-            f'{typef[2]}  {space_1 * "."}  {typef[1]}  {space_2 * "."}  {typef[0]}')
+            f'{typef[2]}  {space_1 * "."}  {typef[1]}  {space_2 * "."}  {size_readable}')
 
 
-sizeByFileType('/home/zhrcosta/Downloads')
+sizeByFileType('/media/zhrcosta/10F0F41BF0F4092C/Users/Guilherme/Downloads')
