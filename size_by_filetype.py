@@ -1,26 +1,21 @@
 from size_readable_m2 import sizeReadable
-
+import os
+import glob
 
 def sizeByFileType(path):
+    
+    if os.path.isdir(path):
+        if path[-1] != '/':
+            path = path + '/'
+            folder = glob.glob(path + '*')
+    else:
+        print('não é um diretorio')
 
-    import os
-    import glob
+    file_list = [file for file in folder if os.path.isfile(file)]
 
-    folder = glob.glob(path + "/*")
-
-    file_list = []
-
-    ext_list = []
+    ext_list = [file.split(".")[-1] for file in file_list]
 
     type_count = []
-
-    for file_path in folder:
-        if os.path.isfile(file_path):
-            file_list.append(file_path)
-
-    for file in file_list:
-        file = file.split(".")[-1]
-        ext_list.append(file)
 
     for ext in set(ext_list):
         exttype = ext.upper()
@@ -36,14 +31,18 @@ def sizeByFileType(path):
 
     type_count = sorted(type_count)[::-1]
 
-    for typef in type_count:
+    print('\n')
 
-        space_1 = 15 - (len(typef[2]) + len(str(typef[1])))
-        size_readable = sizeReadable(typef[0])
-        space_2 = 15 - len(size_readable)
+    for index, values in enumerate(type_count):
+        size = f'{values[0]:,} - Bytes'.replace(',','.')
+        size_h = sizeReadable(values[0])
+        amount = values[1]
+        ext = values[2]
 
-        print(
-            f'{typef[2]}  {space_1 * "."}  {typef[1]}  {space_2 * "."}  {size_readable}')
+        space_1 = 10 - (len(str(amount))+ len(ext))
+        space_2 = 20 - len(size_h)
+        space_3 = 30 - len(size)
+        print(f'{ext} {space_1 * "."} {amount} {space_2 * "."} {size_h} {space_3 * "."} {size}')
 
-
-sizeByFileType('/media/zhrcosta/10F0F41BF0F4092C/Users/Guilherme/Downloads')
+    print('\n')
+sizeByFileType()
