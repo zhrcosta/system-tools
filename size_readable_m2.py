@@ -10,7 +10,7 @@ def sizeReadable(sizeInBytes):
         if sizeInBytes < 1024**(len(label)-1):
 
             if sizeInBytes < factor:
-                readable = f'{sizeInBytes/(factor/1024):.2f} - {label[size]}'
+                readable = f'{sizeInBytes/(factor/1024):.2f} - {label[size]}'.replace('.',',')
                 return readable
                 break
 
