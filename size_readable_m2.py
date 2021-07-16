@@ -2,7 +2,7 @@ def sizeReadable(sizeInBytes):
 
     byte = 1
     factor = 1024
-    label = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+    label = ['B ', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
     readable = ''
 
     for size in range(len(label)):
